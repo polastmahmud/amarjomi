@@ -1,0 +1,11 @@
+<div class="mx-auto p-5">
+  <%= link_to properties_path, class: "btn" do %>
+  &larr; Back to properties
+  <% end %>
+
+  <div class="card w-full max-w-xl shadow-xl mx-auto md:p-5">
+    <h2 class="text-3xl py-3">Create a new property</h2>
+
+    <%= render "form", property: @property %>
+  </div>
+</div>

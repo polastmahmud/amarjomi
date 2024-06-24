@@ -1,0 +1,70 @@
+
+<div class="card w-full max-w-xl shadow-xl mx-auto md:p-5">
+	<h2 class="text-3xl py-3">Create a new Appointment</h2>
+	<%= form_for [@property, @appointment] do |form| %>
+		
+		<%= form.hidden_field :property_id, value: @property.id %>
+		<%= form.hidden_field :agent_id, value: @property.agent.id %>
+
+		<div class="form-control">
+			<label class="label">
+				<span class="label-text">Select a date</span>
+			</label>
+			<input type="date" class="bg-base-100 border border-primary text-sm rounded-lg focus:ring-primary cursor-pointer w-1/2 p-2.5" required>
+		</div>
+
+		<div class="form-control">
+			<label class="label">
+				<span class="label-text">Your Name</span>
+			</label>
+			<%= form.text_field :client_name, class: "input input-bordered input-primary w-full max-w-sm", placeholder: "Your Name"%>
+			<% @appointment.errors.full_messages_for(:client_name).each do |message| %>
+				<p class="text-xs text-red-500"><%= message %></p>
+			<% end %>
+		</div>
+
+		<div class="form-control">
+			<label class="label">
+				<span class="label-text">Your Address</span>
+			</label>
+			<%= form.text_field :client_address, class: "input input-bordered input-primary w-full max-w-sm", placeholder: "Your Address"%>
+			<% @appointment.errors.full_messages_for(:client_address).each do |message| %>
+				<p class="text-xs text-red-500"><%= message %></p>
+			<% end %>
+		</div>
+
+		<div class="form-control">
+			<label class="label">
+				<%= form.label :time_slot, class: "label-text" %>
+			</label>
+			<%= form.text_field :time_slot, class: "input input-bordered input-primary w-full max-w-sm", placeholder: "Time Slot"%>
+			<% @appointment.errors.full_messages_for(:time_slot).each do |message| %>
+				<p class="text-xs text-red-500"><%= message %></p>
+			<% end %>
+		</div>
+
+		<div class="form-control">
+			<label class="label">
+				<span class="label-text">Your phone number</span>
+			</label>
+			<%= form.telephone_field :client_phone_number, class: "input input-bordered input-primary w-full max-w-sm", placeholder: "Your phone number"%>
+			<% @appointment.errors.full_messages_for(:client_phone_number).each do |message| %>
+				<p class="text-xs text-red-500"><%= message %></p>
+			<% end %>
+		</div>
+
+		<div class="form-control">
+			<label class="label">
+				<%= form.label :addtional_query, class: "label-text" %>
+			</label>
+			<%= form.text_area :addtional_query, class: "textarea textarea-primary max-w-sm" %>
+			<% @appointment.errors.full_messages_for(:addtional_query).each do |message| %>
+				<p class="text-xs text-red-500"><%= message %></p>
+			<% end %>
+		</div>
+
+		<div class="form-control mt-6">
+			<%= form.submit "Create Appointment", class: "btn btn-accent" %>
+		</div>
+	<% end %>
+</div>

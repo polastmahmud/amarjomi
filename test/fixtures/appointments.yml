@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  property: one
+  agent: one
+  date: 2024-06-09
+  client_name: MyString
+  client_address: MyText
+  time_slot: MyString
+  client_phone_number: MyString
+  addtional_query: MyText
+
+two:
+  property: two
+  agent: two
+  date: 2024-06-09
+  client_name: MyString
+  client_address: MyText
+  time_slot: MyString
+  client_phone_number: MyString
+  addtional_query: MyText

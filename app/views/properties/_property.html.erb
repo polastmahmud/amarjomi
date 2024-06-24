@@ -1,0 +1,23 @@
+<div id="<%= dom_id property %>">
+	<div class="card md:w-56 w-8/10 h-[300px] md:h-[450px] glass mx-auto">
+		<figure class="h-2/5">
+			<% if property.images.attached? %>
+				<%= image_tag property.images.first, alt: "property image", class: "md:h-48 object-fill" %>
+			<% else %>
+				<% if property.variant == "Land" %>
+					<%=  render "shared/land_alternative" %>
+				<% else %>
+					<%= render "shared/flat_alternative" %>
+				<% end %>
+			<% end %>
+		</figure>
+		<div class="card-body">
+			<h2 class="card-title"><%= property.caption.truncate(25) %></h2>
+			<p><%= property.description.truncate(60) %></p>
+			<div class="card-actions justify-start">
+				<div class="badge badge-outline"><%= property.variant %></div>
+				<div class="badge badge-outline"><%= property.area %></div>
+			</div>
+		</div>
+	</div>
+</div>

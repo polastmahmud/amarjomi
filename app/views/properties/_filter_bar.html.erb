@@ -1,0 +1,48 @@
+<div class="p-3 rounded-lg m-10 md:w-8/12 mt-5 md:mt-10 w-11/12 mx-auto items-center bg-base-200">
+	<%= form_with url: properties_path, method: :get do |form| %>
+		<div class="flex justify-start md:gap-4 gap-2 items-center">
+			<div class="form-control w-20 md:w-24">
+				<label class="label" for="variant">
+					<span class="label-text">Variant</span>
+				</label>
+				<select name="variant" class="select select-bordered select-sm">
+					<option value="All">All</option>
+					<option value="Land" <%= "selected" if @selected_variant == "Land" %>>Land</option>
+					<option value="Flat" <%= "selected" if @selected_variant == "Flat" %>>Flat</option>
+				</select>
+			</div>
+			<div class="form-control w-24">
+				<label class="label" for="area">
+					<span class="label-text">Area</span>
+				</label>
+				<select name="area" class="select select-bordered select-sm">
+					<option value="All">All</option>
+					<option value="Mirpur">Mirpur</option>
+					<option value="Uttara">Uttara</option>
+					<option value="Kuril">Kuril</option>
+				</select>
+			</div>
+
+			<div class="form-control w-24 md:w-24">
+				<label class="label" for="order_by">
+					<span class="label-text">Sort by</span>
+				</label>
+				<select name="order_by" class="select select-bordered select-sm">
+					<option value="default"<%= "selected" if @selected_order == "default" %>>Default</option>
+					<option value="created_at" <%= "selected" if @selected_order == "created_at" %>>Newest</option>
+					<option value="price"<%= "selected" if @selected_order == "price" %>>Price</option>
+					<option value="popularity"<%= "selected" if @selected_order == "popularity" %>>Popularity</option>
+				</select>
+
+			</div>
+
+			<div class="form-control">
+				<label class="label" for="submit">
+					<span class="label-text">&nbsp;</span>
+				</label>
+				<%= form.submit "Filter", class: "btn btn-secondary btn-sm" %>
+			</div>
+			
+		</div>
+	<% end %>
+</div>

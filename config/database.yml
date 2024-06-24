@@ -1,0 +1,22 @@
+# PostgreSQL. Versions 9.3 and up are supported.
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: postgres
+  password: postgres
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: amar_jomi_development
+
+test:
+  <<: *default
+  database: amar_jomi_test
+
+production:
+  <<: *default
+  database: amar_jomi_production
+  username: amar_jomi
+  password: <%= ENV["AMAR_JOMI_DATABASE_PASSWORD"] %>

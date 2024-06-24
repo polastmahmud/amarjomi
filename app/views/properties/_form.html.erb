@@ -1,0 +1,80 @@
+<%= form_with(model: property, html: { data: { controller: "form" } }) do |form| %>
+  <%= form.hidden_field :agent_id, value: current_agent.id %>
+
+  <div class="form-control mt-2">
+    <label class="label">
+      <%= form.label :images, class: "label-text" %>
+    </label>
+    <%= form.file_field :images, multiple: true, accept: 'image/png,image/jpeg', class: "file-input file-input-bordered w-full max-w-xs" %>
+  </div> 
+
+	<div class="form-control">
+    <label class="label">
+		  <%= form.label :caption, class: "label-text" %>
+    </label>
+		<%= form.text_field :caption, class: "input input-bordered input-primary w-full max-w-sm", placeholder: "Caption"%>
+    <% property.errors.full_messages_for(:caption).each do |message| %>
+      <p class="text-xs text-red-500"><%= message %></p>
+    <% end %>
+	</div>
+
+  <div class="flex flex-col md:flex-row md:space-x-3">
+    <div class="form-control">
+      <label class="label">
+        <%= form.label :area, class: "label-text" %>
+      </label>
+      <%= form.text_field :area, class: "input input-bordered input-primary w-full max-w-sm", placeholder: "Area" %>
+      <% property.errors.full_messages_for(:area).each do |message| %>
+        <p class="text-xs text-red-500"><%= message %></p>
+      <% end %>
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <%= form.label :location, class: "label-text" %>
+      </label>
+      <%= form.text_field :location, class: "input input-bordered input-primary max-w-sm", placeholder: "Location"%>
+      <% property.errors.full_messages_for(:location).each do |message| %>
+        <p class="text-xs text-red-500"><%= message %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="flex flex-col md:flex-row md:space-x-3">
+    <div class="form-control">
+      <label class="label">
+        <%= form.label :variant, class: "label-text" %>
+      </label>
+      <%= form.select :variant, Property::VALID_VARIANTS, {}, class: "select select-primary w-full max-w-sm", data: { "form-target": "variant", action: "change->form#updateUnit" } %>
+    </div>
+    <div class="form-control">
+      <label class="label">
+        <%= form.label :size, class: "label-text", data: { "form-target": "sizelabel"} %>
+      </label>
+      <%= form.number_field :size, class: "input input-bordered input-primary w-full max-w-sm join-item", data: { "form-target": "sizeinput" } %>
+      <% property.errors.full_messages_for(:size).each do |message| %>
+        <p class="text-xs text-red-500"><%= message %></p>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-control md:w-1/3">
+    <label class="label">
+      <%= form.label :status, class: "label-text" %>
+    </label>
+    <%= form.select :status, Property::VALID_STATUSES, {}, class: "select select-primary w-full max-w-sm" %>
+  </div>
+
+  <div class="form-control">
+    <label class="label">
+      <%= form.label :description, class: "label-text" %>
+    </label>
+    <%= form.text_area :description, class: "textarea textarea-primary max-w-sm" %>
+    <% property.errors.full_messages_for(:description).each do |message| %>
+      <p class="text-xs text-red-500"><%= message %></p>
+    <% end %>
+  </div>
+ 
+  <div class="form-control mt-6">
+    <%= form.submit "Create Property", class: "btn btn-accent" %>
+  </div>
+<% end %>

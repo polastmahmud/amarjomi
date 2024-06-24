@@ -1,0 +1,32 @@
+<div class="navbar glass">
+  <div class="flex-1">
+    <a href="/" class="btn btn-ghost text-xl">
+			<img src="/assets/logo.png" class="h-10" alt="Amar-Jomi Logo" />
+			<span class="font-raleway font-bold italic">Amar-Jomi</span>
+		</a>
+  </div>
+  <div class="flex-none">
+    <ul class="menu menu-horizontal px-1">
+			<li>
+				<%= link_to "Properties", properties_path %>
+			</li>
+			<% if agent_signed_in? %>
+				<li>
+					<details>
+						<summary>
+							<%= current_agent.name %>
+						</summary>
+						<ul class="p-2 bg-base-100 rounded-t-none">
+							<li>
+								<%= link_to "Profile", "#" %>
+							</li>
+							<li>
+								<%= button_to "Logout", destroy_agent_session_path, method: :delete  %>
+							</li>
+						</ul>
+					</details>
+				</li>
+			<% end %>
+    </ul>
+  </div>
+</div>
